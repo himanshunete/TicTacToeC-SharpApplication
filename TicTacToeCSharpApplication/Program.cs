@@ -5,9 +5,8 @@ namespace TicTacToeCSharpApplication
     class TicTactoe
     {
         public static string PLAYER_1;
-        public const int LETTERX = 0;
-        public const int LETTERO = 1;
-
+        public const char LETTERX = 'X';
+        public const char LETTERO = 'O';
         public static char[] board = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
         public static void createBoard()
         {
@@ -17,14 +16,8 @@ namespace TicTacToeCSharpApplication
             }
         }
 
-        public static void chooseLetter()
+        public static char chooseLetter(char letterPlayer, char letterComputer)
         {
-
-            Random rand = new Random();
-            int letterComputer = rand.Next(0, 2);
-            Console.WriteLine(" Choose a Letter");
-            int letterPlayer = Convert.ToInt32(Console.ReadLine());
-
             switch (letterPlayer)
             {
                 case LETTERX:
@@ -44,6 +37,7 @@ namespace TicTacToeCSharpApplication
                     Console.WriteLine(" Computer choose O Option  ");
                     break;
             }
+            return letterPlayer;
         }
 
         public static void showBoard()
@@ -53,17 +47,47 @@ namespace TicTacToeCSharpApplication
                 Console.WriteLine(" |" + board[7] + "   | " + board[8] + "  | " + board[9] + "  | ");
 
         }
+
+        public static void makeAMove(char letterPlayer)
+        {
+            char freeSpace = ' ';
+            Random rand = new Random();
+            Console.WriteLine(" Desired Location ");
+            int index = Convert.ToInt32(Console.ReadLine());
+            if ( board[index] == ' ')
+            {
+                if (letterPlayer == 'X')
+                {
+                    board[index] = letterPlayer;
+                }
+                else if (letterPlayer == 'O')
+                {
+                    board[index] = letterPlayer;
+                }
+            }
+        }
         
     }
+
+
 
     class Program
     {
         static void Main(string[] args)
         {
+            char[] letterComputer = { 'X', 'O' };
             Console.WriteLine(" Welcome to Tic Tac Toe Game");
-            TicTactoe.createBoard();
-            TicTactoe.chooseLetter();
+            Random rand = new Random();
+            Console.WriteLine(" Computer choose a letter");
+            int i = rand.Next(letterComputer.Length);
+
+            Console.WriteLine(" Player choose a letter");
+            char letterPlayer = Console.ReadLine()[0];
+            TicTactoe.chooseLetter(letterPlayer, letterComputer[i]);
+            
+            TicTactoe.makeAMove(letterPlayer);
             TicTactoe.showBoard();
+
 
         }
     }
