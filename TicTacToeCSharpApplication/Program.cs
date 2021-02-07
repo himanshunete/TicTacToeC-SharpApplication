@@ -202,7 +202,6 @@ namespace TicTacToeCSharpApplication
         }
         
     }
-
     class Program
     {
         static void Main(string[] args)
