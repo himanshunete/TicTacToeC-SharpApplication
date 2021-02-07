@@ -118,7 +118,6 @@ namespace TicTacToeCSharpApplication
             }
 
         }
-
         public static bool isWin(char[] letter)
         {
             return (board[1] == letter[0] && board[2] == letter[0] && board[3] == letter[0]) ||
