@@ -45,6 +45,15 @@ namespace TicTacToeCSharpApplication
                     break;
             }
         }
+
+        public static void showBoard()
+        {
+                Console.WriteLine(" |" + board[1] + "   | " + board[2] + "  | " + board[3] + "  | ");
+                Console.WriteLine(" |" + board[4] + "   | " + board[5] + "  | " + board[6] + "  | ");
+                Console.WriteLine(" |" + board[7] + "   | " + board[8] + "  | " + board[9] + "  | ");
+
+        }
+        
     }
 
     class Program
@@ -54,6 +63,7 @@ namespace TicTacToeCSharpApplication
             Console.WriteLine(" Welcome to Tic Tac Toe Game");
             TicTactoe.createBoard();
             TicTactoe.chooseLetter();
+            TicTactoe.showBoard();
 
         }
     }
