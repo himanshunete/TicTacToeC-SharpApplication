@@ -48,23 +48,49 @@ namespace TicTacToeCSharpApplication
 
         }
 
-        public static void makeAMove(char letterPlayer)
+        public static void makeAMove(char letterPlayer, char letterComputer)
         {
             char freeSpace = ' ';
             Random rand = new Random();
-            Console.WriteLine(" Desired Location ");
-            int index = Convert.ToInt32(Console.ReadLine());
-            if ( board[index] == ' ')
+            if (makeAToss() == 1)
             {
-                if (letterPlayer == 'X')
+                Console.WriteLine(" Players Move ");
+                int indexPlayer = Convert.ToInt32(Console.ReadLine());
+                if (board[indexPlayer] == ' ')
                 {
-                    board[index] = letterPlayer;
+                    board[indexPlayer] = letterPlayer;
                 }
-                else if (letterPlayer == 'O')
+                Console.WriteLine(" Computers Move ");
+                int indexComputer = rand.Next(1, 10);
+                if (board[indexComputer] == ' ')
                 {
-                    board[index] = letterPlayer;
+                    board[indexComputer] = letterComputer;
+                }
+
+
+            }
+            else if (makeAToss() == 0)
+            {
+                Console.WriteLine(" Computers Move ");
+                int indexComputer = rand.Next(1, 10);
+                if (board[indexComputer] == ' ')
+                {
+                    board[indexComputer] = letterComputer;
+                }
+                Console.WriteLine(" Players Move ");
+                int indexPlayer = Convert.ToInt32(Console.ReadLine());
+                if (board[indexPlayer] == ' ')
+                {
+                    board[indexPlayer] = letterPlayer;
                 }
             }
+        }
+
+        public static int makeAToss()
+        {
+            Random rand = new Random();
+            int toss = rand.Next(0,2);
+            return toss;
         }
         
     }
@@ -73,17 +99,13 @@ namespace TicTacToeCSharpApplication
     {
         static void Main(string[] args)
         {
-            char[] letterComputer = { 'X', 'O' };
+            char letterComputer = 'O' ;
+            char letterPlayer = 'X';
             Console.WriteLine(" Welcome to Tic Tac Toe Game");
-            Random rand = new Random();
-            Console.WriteLine(" Computer choose a letter");
-            int i = rand.Next(letterComputer.Length);
-
-            Console.WriteLine(" Player choose a letter");
-            char letterPlayer = Console.ReadLine()[0];
-            TicTactoe.chooseLetter(letterPlayer, letterComputer[i]);
             
-            TicTactoe.makeAMove(letterPlayer);
+            TicTactoe.chooseLetter(letterPlayer, letterComputer);
+            
+            TicTactoe.makeAMove(letterPlayer, letterComputer);
             TicTactoe.showBoard();
 
 
